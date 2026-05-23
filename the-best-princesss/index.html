@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Принцессе Милашке 🌸</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="petals-container" id="petals"></div>
+    
+    <div class="container">
+        <header class="fade-in">
+            <!--<p class="date">princess</p>-->
+            <h1>Принцессе <br>Милашке 💕</h1>
+        </header>
+
+        <main class="card glass">
+            <div class="flower-icon">🌸</div>
+            <h2>Ты — самое прекрасное чудо этой жизни</h2>
+            <p>Пусть каждый день дарит тебе столько счастья, сколько лепестков в самом красивом букете. А я всегда буду рядом, чтобы делать тебя счастливой ❤️</p>
+            
+            <div class="gallery">
+                <div class="photo-frame">
+                    <img src="./images/photo_2026-02-22_23-12-43.jpg" alt="Фото" id="main-photo">
+                </div>
+            </div>
+
+            <button class="btn" onclick="celebrate()">
+                <span>Получить комплимент</span>
+            </button>
+            <p id="compliment" class="compliment-text"></p>
+        </main>
+    </div>
+
+<script>
+// Обновлённые романтичные комплименты
+const content = [
+    { photo: "images/photo_20260514_212517_836.png", text: "Ты прекраснее всех цветов 🌸" },
+    { photo: "images/photo_20260514_212141_664.png", text: "Твоя улыбка - самое тёплое солнце" },
+    { photo: "images/photo_20260514_212029_728.png", text: "Ты самая нежная и неповторимая" },
+    { photo: "images/photo_20266051_288123_911.png", text: "Хочу, чтобы такая малышка всегда была в моём сердце..." },
+    { photo: "images/photo_20260514_212139_932.png", text: "Ты невероятная красотка!!!" },
+    { photo: "images/photo_20260514_212026_663.jpg", text: "Хочу узнать, познать тебя всё ближе и поделиться своими чувствами" },
+    { photo: "images/photo_zfkuO2U3ht7uzwN7MQAJtxvjvu8iE5uKFp8MZHt4STFiYhj5JNyZf5HUziRaKbyczcsuJ0tZytZaa5LXSOahmJED.png", text: "Мечтаю вдохнуть твой запах так, чтобы голова закружилась..." }
+];
+
+let currentIndex = -1;
+
+// Основная функция
+function celebrate() {
+    const imgElement = document.getElementById('main-photo');
+    const textElement = document.getElementById('compliment');
+
+    currentIndex = (currentIndex + 1) % content.length;
+
+    imgElement.src = content[currentIndex].photo;
+    textElement.innerText = content[currentIndex].text;
+    textElement.style.opacity = 1;
+}
+
+// Автозапуск первого комплимента
+window.onload = () => {
+    setTimeout(() => {
+        celebrate();
+    }, 800);
+};
+
+// Улучшенные лепестки + сердечки
+function createPetal() {
+    const container = document.getElementById('petals');
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    
+    const symbols = ['🌸', '🌷', '💖', '❤️', '✨', '🌺'];
+    petal.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+    
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.fontSize = (Math.random() * 18 + 14) + 'px';
+    petal.style.animationDuration = (Math.random() * 4 + 4) + 's';
+    petal.style.opacity = Math.random() * 0.6 + 0.4;
+    petal.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
+    
+    container.appendChild(petal);
+
+    setTimeout(() => petal.remove(), 8000);
+}
+
+setInterval(createPetal, 80);
+</script>
+</body>
+</html>
